@@ -20,6 +20,7 @@ public class LoggerManagerTest {
     public void testBeforeMethod() {
         File file = new File("file.log");
         file.delete();
+
     }
 
     @Test
@@ -34,7 +35,7 @@ public class LoggerManagerTest {
     public void testRemove() throws Exception {
         LoggerManager lm = new LoggerManager();
         lm.add(LoggerFactory.getConsoleLogger());
-        Assert.assertEquals(lm.size(), 1);
+        Assert.assertEquals(lm.size(),1);
         lm.remove(0);
         Assert.assertEquals(lm.size(),0);
     }
@@ -114,5 +115,23 @@ public class LoggerManagerTest {
         String line = reader.readLine();
 
         Assert.assertEquals(line, "ERROR : error line");
+    }
+
+    @Test
+    public void testAsyncLogger() throws Exception {
+        LoggerManager lm = new LoggerManager(LogLevel.INFO);
+
+        File file = new File("async.log");
+        file.createNewFile();
+
+        lm.add(LoggerFactory.getAsyncLogger("async.log"));
+
+
+        lm.info("info line");
+
+        BufferedReader reader = new BufferedReader(new FileReader("async.log"));
+        String line = reader.readLine();
+
+        Assert.assertEquals(line, "INFO : info line");
     }
 }
