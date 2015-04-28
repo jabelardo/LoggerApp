@@ -18,18 +18,26 @@ public class FileLogger extends AbstractLogger {
         this.writeLog(this.getFormatedMessage(message, level));
     }
 
-    void writeLog(String message){
+    protected void writeLog(String message){
 
         File file = new File(this.path);
+        BufferedWriter writer = null;
 
         try {
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true)));
+            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true)));
             writer.write(message);
             writer.newLine();
             writer.flush();
-            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            if(writer != null) {
+                try {
+                    writer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }

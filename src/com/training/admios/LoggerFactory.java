@@ -4,20 +4,25 @@ package com.training.admios;
  * Created by yohendryhurtado on 4/27/15.
  */
 public class LoggerFactory {
-    public static AbstractLogger getLogger(String type, String path) {
+    public static AbstractLogger getLogger(LoggerType type, String path) {
+        AbstractLogger logger = null;
         switch(type) {
-            case "file":
-                return new FileLogger(path);
-            case "async":
-                return new AsyncLogger(path);
-            case "console":
-                return new ConsoleLogger();
+            case FILE:
+                logger = new FileLogger(path);
+                break;
+            case ASYNC:
+                logger = new AsyncLogger(path);
+                break;
+            case CONSOLE:
             default:
-                return new ConsoleLogger();
+                logger = new ConsoleLogger();
+                break;
         }
+
+        return logger;
     }
 
-    public static AbstractLogger getLogger(String type) {
+    public static AbstractLogger getLogger(LoggerType type) {
         return LoggerFactory.getLogger(type, "");
     }
 }

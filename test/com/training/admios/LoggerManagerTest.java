@@ -8,7 +8,6 @@ import org.testng.annotations.BeforeMethod;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.lang.reflect.Executable;
 
 
 /**
@@ -20,21 +19,20 @@ public class LoggerManagerTest {
     public void testBeforeMethod() {
         File file = new File("file.log");
         file.delete();
-
     }
 
     @Test
     public void testAdd() throws Exception {
         LoggerManager lm = new LoggerManager();
         Assert.assertEquals(lm.size(),0);
-        lm.add(LoggerFactory.getLogger(""));
+        lm.add(LoggerFactory.getLogger(LoggerType.CONSOLE));
         Assert.assertEquals(lm.size(), 1);
     }
 
     @Test
     public void testRemove() throws Exception {
         LoggerManager lm = new LoggerManager();
-        lm.add(LoggerFactory.getLogger(""));
+        lm.add(LoggerFactory.getLogger(LoggerType.CONSOLE));
         Assert.assertEquals(lm.size(),1);
         lm.remove(0);
         Assert.assertEquals(lm.size(),0);
@@ -44,8 +42,7 @@ public class LoggerManagerTest {
     public void testInfo() throws Exception {
         LoggerManager lm = new LoggerManager();
 
-        lm.add(LoggerFactory.getLogger("file", "file.log"));
-
+        lm.add(LoggerFactory.getLogger(LoggerType.FILE, "file.log"));
 
         lm.info("test line");
 
@@ -59,8 +56,7 @@ public class LoggerManagerTest {
     public void testDebug() throws Exception {
         LoggerManager lm = new LoggerManager();
 
-        lm.add(LoggerFactory.getLogger("file", "file.log"));
-
+        lm.add(LoggerFactory.getLogger(LoggerType.FILE, "file.log"));
 
         lm.debug("test line");
 
@@ -74,8 +70,7 @@ public class LoggerManagerTest {
     public void testWarning() throws Exception {
         LoggerManager lm = new LoggerManager();
 
-        lm.add(LoggerFactory.getLogger("file", "file.log"));
-
+        lm.add(LoggerFactory.getLogger(LoggerType.FILE, "file.log"));
 
         lm.warning("test line");
 
@@ -89,8 +84,7 @@ public class LoggerManagerTest {
     public void testError() throws Exception {
         LoggerManager lm = new LoggerManager();
 
-        lm.add(LoggerFactory.getLogger("file", "file.log"));
-
+        lm.add(LoggerFactory.getLogger(LoggerType.FILE, "file.log"));
 
         lm.error("test line");
 
@@ -104,8 +98,8 @@ public class LoggerManagerTest {
     public void testLoggerLevel() throws Exception {
         LoggerManager lm = new LoggerManager(LogLevel.WARNING);
 
-        lm.add(LoggerFactory.getLogger("file", "file.log"));
-        lm.add(LoggerFactory.getLogger("console"));
+        lm.add(LoggerFactory.getLogger(LoggerType.FILE, "file.log"));
+        lm.add(LoggerFactory.getLogger(LoggerType.CONSOLE));
 
         lm.info("info line");
         lm.debug("debug line");
@@ -124,8 +118,7 @@ public class LoggerManagerTest {
         File file = new File("async.log");
         file.createNewFile();
 
-        lm.add(LoggerFactory.getLogger("async","async.log"));
-
+        lm.add(LoggerFactory.getLogger(LoggerType.ASYNC, "async.log"));
 
         lm.info("info line");
 

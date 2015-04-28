@@ -11,9 +11,6 @@ public abstract class AbstractLogger {
     abstract void log(String message, LogLevel level);
 
     String getFormatedMessage(String message, LogLevel level) {
-        StringBuilder sb = new StringBuilder();
-        Formatter formatter = new Formatter(sb);
-        formatter.format("%s : %s",level, message);
-        return formatter.toString();
+        return String.format("%s : %s",level, message);
     }
 }
