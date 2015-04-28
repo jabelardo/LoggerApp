@@ -5,12 +5,12 @@ package com.training.admios;
  */
 public class ConsoleLogger extends AbstractLogger {
 
-    public ConsoleLogger() {
-
+    public ConsoleLogger(LogLevel level) {
+        this.setCurrentLevel(level);
     }
 
     @Override
-    public void log(String message, LogLevel level) {
+    public void performLog(String message, LogLevel level) {
         System.out.println(getFormatedMessage(message, level));
     }
 }

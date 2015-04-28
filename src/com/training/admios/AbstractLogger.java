@@ -8,9 +8,29 @@ import java.util.Formatter;
  */
 public abstract class AbstractLogger {
 
-    abstract void log(String message, LogLevel level);
+    private LogLevel currentLevel;
+
+    abstract protected void performLog(String message, LogLevel level);
+
+    public void log(String message, LogLevel level) {
+        if(isLoggable(level)) {
+            this.performLog(message, level);
+        }
+    }
 
     String getFormatedMessage(String message, LogLevel level) {
         return String.format("%s : %s",level, message);
+    }
+
+    public LogLevel getCurrentLevel() {
+        return currentLevel;
+    }
+
+    public void setCurrentLevel(LogLevel currentLevel) {
+        this.currentLevel = currentLevel;
+    }
+
+    private boolean isLoggable(LogLevel logLevel) {
+        return this.getCurrentLevel().compareTo(logLevel) <= 0;
     }
 }

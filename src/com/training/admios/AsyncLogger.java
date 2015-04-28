@@ -3,31 +3,22 @@ package com.training.admios;
 /**
  * Created by yohendryhurtado on 4/27/15.
  */
-public class AsyncLogger extends FileLogger implements Runnable {
+public class AsyncLogger extends AbstractLogger {
 
-    String message;
+    private final AbstractLogger logger;
 
-    public AsyncLogger(String path) {
-        super(path);
+    public AsyncLogger(AbstractLogger logger) {
+        this.logger = logger;
     }
 
     @Override
-    public synchronized void log(String message, LogLevel logLevel) {
-        this.setMessage(getFormatedMessage(message, logLevel));
-        Thread th = new Thread(this);
-        th.start();
+    public synchronized void performLog(String message, LogLevel logLevel) {
+        Runnable task = () -> logger.log(message, logLevel);
+        new Thread(task).start();
     }
 
     @Override
-    public void run() {
-        this.writeLog(this.getMessage());
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
+    public LogLevel getCurrentLevel() {
+        return this.logger.getCurrentLevel();
     }
 }

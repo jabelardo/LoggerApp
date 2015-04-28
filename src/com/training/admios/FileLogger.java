@@ -9,12 +9,13 @@ public class FileLogger extends AbstractLogger {
 
     private final String path;
 
-    public FileLogger(String path) {
+    public FileLogger(LogLevel level, String path) {
         this.path = path;
+        this.setCurrentLevel(level);
     }
 
     @Override
-    public void log(String message, LogLevel level) {
+    public void performLog(String message, LogLevel level) {
         this.writeLog(this.getFormatedMessage(message, level));
     }
 

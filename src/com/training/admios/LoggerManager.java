@@ -8,17 +8,15 @@ import java.util.Collection;
  */
 public class LoggerManager {
 
-    private LogLevel currentlLevel;
+
     private ArrayList<AbstractLogger> loggers;
 
     public LoggerManager() {
         this.loggers = new ArrayList<AbstractLogger>();
-        this.currentlLevel = LogLevel.INFO;
     }
 
     public LoggerManager(LogLevel level) {
         this.loggers = new ArrayList<AbstractLogger>();
-        this.currentlLevel = level;
     }
 
     public int size() {
@@ -41,24 +39,10 @@ public class LoggerManager {
         return loggers.removeAll(c);
     }
 
-    public LogLevel getCurrentLevel() {
-        return currentlLevel;
-    }
-
-    public void setCurrentLevel(LogLevel currentlLevel) {
-        this.currentlLevel = currentlLevel;
-    }
-
     public void log(String message, LogLevel logLevel) {
-        if(this.isLoggable(logLevel)) {
-            for(AbstractLogger logger : loggers) {
-                logger.log(message, logLevel);
-            }
+        for(AbstractLogger logger : loggers) {
+            logger.log(message, logLevel);
         }
-    }
-
-    private boolean isLoggable(LogLevel logLevel) {
-        return this.currentlLevel.compareTo(logLevel) <= 0;
     }
 
     void info(String message) {
