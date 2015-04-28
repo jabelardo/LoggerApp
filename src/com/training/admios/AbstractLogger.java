@@ -14,7 +14,7 @@ public abstract class AbstractLogger {
 
     public void log(String message, LogLevel level) {
         if(isLoggable(level)) {
-            this.performLog(message, level);
+            this.logImp(message, level);
         }
     }
 
