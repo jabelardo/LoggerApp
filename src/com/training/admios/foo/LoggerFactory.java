@@ -1,4 +1,4 @@
-package com.training.admios.factory;
+package com.training.admios.foo;
 
 import com.training.admios.*;
 import com.training.admios.impl.AsyncLogger;

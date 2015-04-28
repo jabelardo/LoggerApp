@@ -1,6 +1,6 @@
 package com.training.admios;
 
-import com.training.admios.factory.LoggerFactory;
+import com.training.admios.foo.LoggerFactory;
 import com.training.admios.types.LogLevel;
 import com.training.admios.types.LoggerType;
 import org.testng.Assert;
