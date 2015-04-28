@@ -10,7 +10,7 @@ public class ConsoleLogger extends AbstractLogger {
     }
 
     @Override
-    public void performLog(String message, LogLevel level) {
+    public void logImp(String message, LogLevel level) {
         System.out.println(getFormatedMessage(message, level));
     }
 }

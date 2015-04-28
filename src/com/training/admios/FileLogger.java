@@ -15,7 +15,7 @@ public class FileLogger extends AbstractLogger {
     }
 
     @Override
-    public void performLog(String message, LogLevel level) {
+    public void logImp(String message, LogLevel level) {
         this.writeLog(this.getFormatedMessage(message, level));
     }
 

@@ -12,7 +12,7 @@ public class AsyncLogger extends AbstractLogger {
     }
 
     @Override
-    public synchronized void performLog(String message, LogLevel logLevel) {
+    public synchronized void logImp(String message, LogLevel logLevel) {
         Runnable task = () -> logger.log(message, logLevel);
         new Thread(task).start();
     }

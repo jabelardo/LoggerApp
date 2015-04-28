@@ -10,7 +10,7 @@ public abstract class AbstractLogger {
 
     private LogLevel currentLevel;
 
-    abstract protected void performLog(String message, LogLevel level);
+    abstract protected void logImp(String message, LogLevel level);
 
     public void log(String message, LogLevel level) {
         if(isLoggable(level)) {
