@@ -1,4 +1,4 @@
-package com.training.admios;
+package com.training.admios.types;
 
 /**
  * Created by yohendryhurtado on 4/28/15.

@@ -1,4 +1,7 @@
-package com.training.admios;
+package com.training.admios.impl;
+
+import com.training.admios.AbstractLogger;
+import com.training.admios.types.LogLevel;
 
 /**
  * Created by yohendryhurtado on 4/27/15.

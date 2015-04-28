@@ -1,5 +1,7 @@
 package com.training.admios;
 
+import com.training.admios.types.LogLevel;
+
 import java.util.ArrayList;
 import java.util.Collection;
 

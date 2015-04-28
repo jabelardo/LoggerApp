@@ -1,7 +1,6 @@
 package com.training.admios;
 
-import java.util.Calendar;
-import java.util.Formatter;
+import com.training.admios.types.LogLevel;
 
 /**
  * Created by yohendryhurtado on 4/27/15.
@@ -18,7 +17,7 @@ public abstract class AbstractLogger {
         }
     }
 
-    String getFormatedMessage(String message, LogLevel level) {
+    protected String getFormatedMessage(String message, LogLevel level) {
         return String.format("%s : %s",level, message);
     }
 

@@ -1,4 +1,11 @@
-package com.training.admios;
+package com.training.admios.factory;
+
+import com.training.admios.*;
+import com.training.admios.impl.AsyncLogger;
+import com.training.admios.impl.ConsoleLogger;
+import com.training.admios.impl.FileLogger;
+import com.training.admios.types.LogLevel;
+import com.training.admios.types.LoggerType;
 
 /**
  * Created by yohendryhurtado on 4/27/15.
